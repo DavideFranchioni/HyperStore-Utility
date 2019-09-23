@@ -29,7 +29,7 @@ do
 	echo "${DISK_HEAD}"|${LOG}
 	DISK_LIST=`ssh -i ${SSHKEY} -n ${node} "df -h | grep "/cloudian" | sort -k6"`
 	echo "${DISK_LIST}"|${LOG}
-	ERR=`ssh -i ${SSHKEY} -n ${node} "dmesg|grep 'I/O\|DIMM'"`
+	ERR=`ssh -i ${SSHKEY} -n ${node} "dmesg -T|grep 'I/O\|DIMM'"`
 	echo "`${DATE}` ${ERR:-Nothing Found}"|${LOG}
 done
 echo "`${DATE}` Scan completed, log are saved in ${LOG_PATH}"
